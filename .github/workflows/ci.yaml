@@ -31,7 +31,7 @@ jobs:
           app: hackday::devx-ami
           roleArn: ${{ secrets.GU_RIFF_RAFF_HACKDAY_ROLE_ARN }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          configPath: packages/cdk/cdk.out/riff-raff.yaml
+          configPath: cdk.out/riff-raff.yaml
           contentDirectories: |
             cdk.out:
-              - packages/cdk/cdk.out
+              - cdk.out

@@ -7,9 +7,9 @@ exports[`The DevxContainerAmi stack matches the snapshot 1`] = `
     "gu:cdk:version": "TEST",
   },
   "Resources": {
-    "DevxContainerAmi": {
+    "DevxAmiPipeline": {
       "Properties": {
-        "Description": "Pipeline for creating the devx container AMI",
+        "Description": "Pipeline for creating the devx AMI",
         "DistributionConfigurationArn": {
           "Fn::GetAtt": [
             "DevxContainerDistribution",
@@ -28,11 +28,12 @@ exports[`The DevxContainerAmi stack matches the snapshot 1`] = `
             "Arn",
           ],
         },
-        "Name": "devx-container-ami",
+        "Name": "devx-ami-TEST-pipeline",
         "Tags": {
           "Stack": "playground",
           "Stage": "TEST",
           "gu:cdk:version": "TEST",
+          "gu:repo": "guardian/hackday-devx-ami",
         },
       },
       "Type": "AWS::ImageBuilder::ImagePipeline",
@@ -44,11 +45,12 @@ exports[`The DevxContainerAmi stack matches the snapshot 1`] = `
             "Region": "eu-west-1",
           },
         ],
-        "Name": "devx-container-distribution",
+        "Name": "devx-ami-TEST-distribution",
         "Tags": {
           "Stack": "playground",
           "Stage": "TEST",
           "gu:cdk:version": "TEST",
+          "gu:repo": "guardian/hackday-devx-ami",
         },
       },
       "Type": "AWS::ImageBuilder::DistributionConfiguration",
@@ -60,12 +62,13 @@ exports[`The DevxContainerAmi stack matches the snapshot 1`] = `
             "ComponentArn": "arn:aws:imagebuilder:eu-west-1:aws:component/docker",
           },
         ],
-        "Name": "devx-container-recipe",
+        "Name": "devx-ami-TEST-recipe",
         "ParentImage": "arn:aws:imagebuilder:eu-west-1:aws:image/amazon-linux-2-arm64",
         "Tags": {
           "Stack": "playground",
           "Stage": "TEST",
           "gu:cdk:version": "TEST",
+          "gu:repo": "guardian/hackday-devx-ami",
         },
         "Version": "1.0.0",
       },
@@ -139,6 +142,10 @@ exports[`The DevxContainerAmi stack matches the snapshot 1`] = `
             "Value": "TEST",
           },
           {
+            "Key": "gu:repo",
+            "Value": "guardian/hackday-devx-ami",
+          },
+          {
             "Key": "Stack",
             "Value": "playground",
           },
@@ -155,11 +162,12 @@ exports[`The DevxContainerAmi stack matches the snapshot 1`] = `
         "InstanceProfileName": {
           "Ref": "ImageBuilderProfie158DA968",
         },
-        "Name": "amazon-linux-2",
+        "Name": "devx-ami-TEST-config",
         "Tags": {
           "Stack": "playground",
           "Stage": "TEST",
           "gu:cdk:version": "TEST",
+          "gu:repo": "guardian/hackday-devx-ami",
         },
       },
       "Type": "AWS::ImageBuilder::InfrastructureConfiguration",
