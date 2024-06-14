@@ -112,6 +112,18 @@ exports[`The DevxContainerAmi stack matches the snapshot 1`] = `
               ],
             ],
           },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/AmazonSSMManagedInstanceCore",
+              ],
+            ],
+          },
         ],
         "Tags": [
           {
