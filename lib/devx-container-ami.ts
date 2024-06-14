@@ -25,7 +25,7 @@ export class DevxContainerAmi extends GuStack {
 			components: [
 				{
 					componentArn:
-						'arn:aws:imagebuilder:eu-west-1:aws:component/amazon-corretto-21-jre/1.0.0/1',
+						'arn:aws:imagebuilder:eu-west-1:aws:component/amazon-corretto-17-jre/1.0.0/1',
 				},
 			],
 			version: '1.0.0',
@@ -59,9 +59,7 @@ export class DevxContainerAmi extends GuStack {
 				distributions: [
 					{
 						region: 'eu-west-1',
-						amiDistributionConfiguration: {
-							name: `devx-ami-${props.stage}`,
-						},
+						amiDistributionConfiguration: {},
 					},
 				],
 			},
