@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The DevxContainerAmi stack matches the snapshot 1`] = `
+{
+  "Metadata": {
+    "gu:cdk:constructs": [],
+    "gu:cdk:version": "TEST",
+  },
+  "Resources": {
+    "DevxContainerAmi": {
+      "Properties": {
+        "Description": "Pipeline for creating the devx container AMI",
+        "DistributionConfigurationArn": {
+          "Fn::GetAtt": [
+            "DevxContainerDistribution",
+            "Arn",
+          ],
+        },
+        "ImageRecipeArn": {
+          "Fn::GetAtt": [
+            "DevxContainerRecipe",
+            "Arn",
+          ],
+        },
+        "InfrastructureConfigurationArn": {
+          "Fn::GetAtt": [
+            "InfrastructureConfiguration",
+            "Arn",
+          ],
+        },
+        "Name": "devx-container-ami",
+        "Tags": {
+          "Stack": "playground",
+          "Stage": "TEST",
+          "gu:cdk:version": "TEST",
+        },
+      },
+      "Type": "AWS::ImageBuilder::ImagePipeline",
+    },
+    "DevxContainerDistribution": {
+      "Properties": {
+        "Distributions": [
+          {
+            "Region": "eu-west-1",
+          },
+        ],
+        "Name": "devx-container-distribution",
+        "Tags": {
+          "Stack": "playground",
+          "Stage": "TEST",
+          "gu:cdk:version": "TEST",
+        },
+      },
+      "Type": "AWS::ImageBuilder::DistributionConfiguration",
+    },
+    "DevxContainerRecipe": {
+      "Properties": {
+        "Components": [
+          {
+            "ComponentArn": "arn:aws:imagebuilder:eu-west-1:aws:component/docker",
+          },
+        ],
+        "Name": "devx-container-recipe",
+        "ParentImage": "arn:aws:imagebuilder:eu-west-1:aws:image/amazon-linux-2-arm64",
+        "Tags": {
+          "Stack": "playground",
+          "Stage": "TEST",
+          "gu:cdk:version": "TEST",
+        },
+        "Version": "1.0.0",
+      },
+      "Type": "AWS::ImageBuilder::ImageRecipe",
+    },
+    "ImageBuilderProfie158DA968": {
+      "Properties": {
+        "Roles": [
+          {
+            "Ref": "ImageBuilderRole67171686",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::InstanceProfile",
+    },
+    "ImageBuilderRole67171686": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ec2.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/EC2InstanceProfileForImageBuilder",
+              ],
+            ],
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/EC2InstanceProfileForImageBuilderECRContainerBuilds",
+              ],
+            ],
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/AmazonSSMManagedInstanceCore",
+              ],
+            ],
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "gu:cdk:version",
+            "Value": "TEST",
+          },
+          {
+            "Key": "Stack",
+            "Value": "playground",
+          },
+          {
+            "Key": "Stage",
+            "Value": "TEST",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "InfrastructureConfiguration": {
+      "Properties": {
+        "InstanceProfileName": {
+          "Ref": "ImageBuilderProfie158DA968",
+        },
+        "Name": "amazon-linux-2",
+        "Tags": {
+          "Stack": "playground",
+          "Stage": "TEST",
+          "gu:cdk:version": "TEST",
+        },
+      },
+      "Type": "AWS::ImageBuilder::InfrastructureConfiguration",
+    },
+  },
+}
+`;

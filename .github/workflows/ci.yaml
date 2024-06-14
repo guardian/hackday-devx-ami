@@ -1,0 +1,37 @@
+name: ci
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    permissions:
+      # required by aws-actions/configure-aws-credentials
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - run: npm ci
+      - run: npm test
+      - run: npm run lint
+      - run: npm run synth
+
+      - uses: guardian/actions-riff-raff@v4
+        with:
+          app: hackday::devx-ami
+          roleArn: ${{ secrets.GU_RIFF_RAFF_HACKDAY_ROLE_ARN }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          configPath: packages/cdk/cdk.out/riff-raff.yaml
+          contentDirectories: |
+            cdk.out:
+              - packages/cdk/cdk.out
