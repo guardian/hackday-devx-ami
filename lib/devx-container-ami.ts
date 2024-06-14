@@ -37,12 +37,6 @@ export class DevxContainerAmi extends GuStack {
 					ManagedPolicy.fromAwsManagedPolicyName(
 						'EC2InstanceProfileForImageBuilder',
 					),
-					ManagedPolicy.fromAwsManagedPolicyName(
-						'EC2InstanceProfileForImageBuilderECRContainerBuilds',
-					),
-					ManagedPolicy.fromAwsManagedPolicyName(
-						'AmazonSSMManagedInstanceCore',
-					),
 				],
 			}),
 		});
