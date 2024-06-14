@@ -42,6 +42,9 @@ exports[`The DevxContainerAmi stack matches the snapshot 1`] = `
       "Properties": {
         "Distributions": [
           {
+            "AmiDistributionConfiguration": {
+              "name": "devx-ami-TEST",
+            },
             "Region": "eu-west-1",
           },
         ],
@@ -59,11 +62,11 @@ exports[`The DevxContainerAmi stack matches the snapshot 1`] = `
       "Properties": {
         "Components": [
           {
-            "ComponentArn": "arn:aws:imagebuilder:eu-west-1:aws:component/docker",
+            "ComponentArn": "arn:aws:imagebuilder:eu-west-1:aws:component/amazon-corretto-21-jre/1.0.0/1",
           },
         ],
         "Name": "devx-ami-TEST-recipe",
-        "ParentImage": "arn:aws:imagebuilder:eu-west-1:aws:image/amazon-linux-2-arm64",
+        "ParentImage": "arn:aws:imagebuilder:eu-west-1:aws:image/amazon-linux-2-arm64/2024.6.11",
         "Tags": {
           "Stack": "playground",
           "Stage": "TEST",

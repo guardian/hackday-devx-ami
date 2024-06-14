@@ -21,10 +21,11 @@ export class DevxContainerAmi extends GuStack {
 		const recipe = new CfnImageRecipe(this, 'DevxContainerRecipe', {
 			name: `devx-ami-${props.stage}-recipe`,
 			parentImage:
-				'arn:aws:imagebuilder:eu-west-1:aws:image/amazon-linux-2-arm64',
+				'arn:aws:imagebuilder:eu-west-1:aws:image/amazon-linux-2-arm64/2024.6.11',
 			components: [
 				{
-					componentArn: 'arn:aws:imagebuilder:eu-west-1:aws:component/docker',
+					componentArn:
+						'arn:aws:imagebuilder:eu-west-1:aws:component/amazon-corretto-21-jre/1.0.0/1',
 				},
 			],
 			version: '1.0.0',
@@ -58,6 +59,9 @@ export class DevxContainerAmi extends GuStack {
 				distributions: [
 					{
 						region: 'eu-west-1',
+						amiDistributionConfiguration: {
+							name: `devx-ami-${props.stage}`,
+						},
 					},
 				],
 			},
